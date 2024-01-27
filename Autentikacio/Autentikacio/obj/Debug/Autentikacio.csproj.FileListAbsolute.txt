@@ -1,0 +1,14 @@
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\bin\Debug\Autentikacio.exe.config
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\bin\Debug\Autentikacio.exe
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\bin\Debug\Autentikacio.pdb
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\obj\Debug\Autentikacio.csproj.AssemblyReference.cache
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\obj\Debug\Autentikacio.csproj.CoreCompileInputs.cache
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\obj\Debug\Autentikacio.exe
+C:\Users\Tanar\source\repos\Autentikacio\Autentikacio\obj\Debug\Autentikacio.pdb
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\bin\Debug\Autentikacio.exe.config
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\bin\Debug\Autentikacio.exe
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\bin\Debug\Autentikacio.pdb
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\obj\Debug\Autentikacio.csproj.AssemblyReference.cache
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\obj\Debug\Autentikacio.csproj.CoreCompileInputs.cache
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\obj\Debug\Autentikacio.exe
+D:\Program Files (x86)\Programozas\suli_programozas\c#\Autentikacio\Autentikacio\Autentikacio\obj\Debug\Autentikacio.pdb
