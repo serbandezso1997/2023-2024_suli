@@ -52,7 +52,8 @@ namespace Autentikacio
                         /*Program p=new Program();
                         p.Bejelentkezes();*/
                         //(new Program()).Bejelentkezes();
-                        EvBekeres();
+                        Bejelentkezes(false);
+                        //EvBekeres();
                         break;
                     default:
                         //se nem 1 se nem 2 a leütött karakter
@@ -84,13 +85,18 @@ namespace Autentikacio
                 Console.SetCursorPosition(24, 0);
                 nev = Console.ReadLine();
 
-                if(nev.Length <= 5)
+                if(nev.Length < 5)
                 {
-                    Console.SetCursorPosition(44,0);
+                    Console.SetCursorPosition(51,0);
                     Console.Write("Túl rövid nevet adtál meg!");
+                    for (int i = 24; i <= 50; i++)
+                    {
+                        Console.SetCursorPosition(i, 0);
+                        Console.Write(' ');
+                    }
                 }
             }
-            for(int i = 44; i <= 69; i++)
+            for(int i = 44; i <= 76; i++)
             {
                 Console.SetCursorPosition(i, 0);
                 Console.Write(' ');
@@ -219,7 +225,133 @@ namespace Autentikacio
             felhasznalok.Close();
 
         }
-        static void Bejelentkezes() { }
+        static void Bejelentkezes(bool ujra) 
+        {
+            
+            string[] nyersSzov;
+            string felhasznaloiAz = "";
+            string jelszo = "";
+            StreamReader sr = new StreamReader("felhasznalok.txt");
+            string fejlec = sr.ReadLine();
+            nyersSzov = sr.ReadLine().Split(':');
+            felhasznaloiAz = nyersSzov[1];
+            jelszo = nyersSzov[4];
+            sr.Close();
+            Console.Clear();
+            Console.SetCursorPosition(60, 10);
+            Console.Write("BEJELENTKEZÉS");
+            Console.SetCursorPosition(40, 5);
+            Console.Write("Főmenübe lépéshez nyomj Enter-t.");
+
+            Console.SetCursorPosition(36, 13);
+            Console.Write("Felhasználói azonosító:");
+            Console.SetCursorPosition(52, 14);
+            Console.Write("Jelszó:");
+            Console.WriteLine();
+            while (true)
+            {
+                if (ujra)
+                {
+                    Console.SetCursorPosition(60, 18);
+                    Console.Write("Nem sikerült bejelentkezned!");
+                    //korábban beírt felhasználói azonosító eltüntetése
+                    for (int i = 59; i <= 80; i++)
+                    {
+                        Console.SetCursorPosition(i, 13);
+                        Console.Write(" ");
+                    }
+                    //korábban beírt felhasználói jelszó eltüntetése
+                    for (int i = 59; i <= 80; i++)
+                    {
+                        Console.SetCursorPosition(i, 14);
+                        Console.Write(" ");
+                    }
+                }
+                string beolvFelhAz = "";
+                string beolvJelszo = "";
+
+                Console.SetCursorPosition(59, 13);
+                beolvFelhAz = Console.ReadLine();
+
+                if (beolvFelhAz.Length == 0) break;
+
+                Console.SetCursorPosition(59, 14);
+                int oszlop = 59;
+                int sor = 14;
+                while (true)
+                {
+                    
+                    char c = Console.ReadKey(true).KeyChar;
+
+                    if (c != 8 && c != '\r')
+                    {
+                        Console.Write("*");
+                        beolvJelszo += c;
+                        oszlop++;
+                    }
+                    else if (c == '\r') break;
+                    else if (c == 8)
+                    {
+                        beolvJelszo = beolvJelszo.Substring(0, beolvJelszo.Length - 1);
+                        oszlop--;
+                        Console.SetCursorPosition(oszlop, sor);
+                        Console.Write(" ");
+                        Console.SetCursorPosition(oszlop, sor);
+                    }
+                }
+                //beolvJelszo = Console.ReadLine();
+
+                if (felhasznaloiAz ==  beolvFelhAz && jelszo == beolvJelszo)
+                {
+
+
+
+                    Console.Clear();
+                    Console.WriteLine($"Szia, {nyersSzov[0]} sikerült bejelentkezned.");
+                    Console.WriteLine($"Adataid:");
+                    Console.WriteLine($"Név:{nyersSzov[0]}");
+                    Console.WriteLine($"Felhasználói azonosító:{nyersSzov[1]}");
+                    Console.WriteLine($"E-mail cím:{nyersSzov[2]}");
+                    Console.WriteLine($"Születési Dátum:{nyersSzov[3]}");
+                    Console.WriteLine($"Jelszó:{nyersSzov[4]}");
+                    Console.WriteLine("kilépéshez nyomj Enter-t");
+                    Console.ReadKey();
+                    break;
+
+
+                }
+                /*else if (beolvFelhAz == "\r" || beolvFelhAz == "\n")
+                {
+                    break;
+                }*/
+                else if (beolvFelhAz.Length == 0)
+                {
+/*
+                    Console.Clear() ;
+                    Console.SetCursorPosition(60, 10);
+                    Console.Write("BEJELENTKEZÉS");
+                    Console.SetCursorPosition(60, 18);
+                    Console.Write("Nem Sikerült bejelentkezned.");
+                    Console.SetCursorPosition(36, 13);
+                    Console.Write("Felhasználói azonosító:");
+                    Console.SetCursorPosition(52, 14);
+                    Console.Write("Jelszó:");
+                    Console.WriteLine();
+*/
+                    
+                     
+                    break;
+
+                }
+                ujra = true;
+
+            }
+
+
+            //Console.WriteLine(Console.WindowWidth.ToString()+ " " + Console.WindowHeight.ToString());
+
+            //Console.ReadKey();
+        }
         static string Jelszobekeres(int sor)
         {
             int oszlop = 24;
@@ -648,6 +780,20 @@ namespace Autentikacio
                             //szökőév
                             if (evStringbol % 4 == 0)
                             {
+                                if ( evStringbol % 400 == 0)
+                                {
+                                    if (n2 == "0" || n2 == "1" || n2 == "2" || n2 == "3" ||
+                                        n2 == "4" || n2 == "5" || n2 == "6" || n2 == "7" ||
+                                        n2 == "8" || n2 == "9")
+                                    {
+                                        Console.SetCursorPosition(33, 2);
+                                        Console.Write(n2);
+                                        ev[9] = n2;
+
+                                        break;
+                                    }
+                                }
+                                /*
                                 if (evStringbol % 100 == 0 && evStringbol % 400 == 0)
                                 {
                                     if (n2 == "0" || n2 == "1" || n2 == "2" || n2 == "3" ||
@@ -661,6 +807,7 @@ namespace Autentikacio
                                         break;
                                     }
                                 }
+                                */
 
                                 else if (evStringbol % 100 == 0)
                                 {
@@ -674,6 +821,19 @@ namespace Autentikacio
 
                                         break;
 
+                                    }
+                                }
+                                else
+                                {
+                                    if (n2 == "0" || n2 == "1" || n2 == "2" || n2 == "3" ||
+                                        n2 == "4" || n2 == "5" || n2 == "6" || n2 == "7" ||
+                                        n2 == "8" || n2 == "9")
+                                    {
+                                        Console.SetCursorPosition(33, 2);
+                                        Console.Write(n2);
+                                        ev[9] = n2;
+
+                                        break;
                                     }
                                 }
                             }
